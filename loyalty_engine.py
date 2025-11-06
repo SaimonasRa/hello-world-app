@@ -4,18 +4,16 @@ RULE = "~1 point per €8 (rounded); +5 bonus; cap 50"
 
 def calculate_points(total: float, is_new_customer: bool, campaign: str | None = None) -> int:
     """
-    B-rule:
-      - round(total / 8)
+    Base rule:
+      - floor(total / 10)
       - +5 if new customer
-      - cap at 50
     """
-    base = round(total / 8)
+    base = int(total // 10)
     bonus = 5 if is_new_customer else 0
-    points = base + bonus
-    return min(points, 50)
+    return base + bonus
 
 def format_message(total: float, is_new_customer: bool) -> str:
-    pts = calculate_points(total, is_new_customer, campaign="BLACKFRIDAY")  # NOTE: extra arg
+    pts = calculate_points(total, is_new_customer)
     return f"[v{VERSION}] {pts} pts — {RULE}"
 
 if __name__ == "__main__":
