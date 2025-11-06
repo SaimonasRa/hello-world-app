@@ -1,4 +1,3 @@
-# Loyalty engine
 VERSION = "2.0-C"
 RULE = "Config-driven: 1 per €12; +3 bonus for new customers"
 
@@ -7,7 +6,7 @@ CONFIG = {
     "new_customer_bonus": 3,
 }
 
-def calculate_points(total: float, is_new_customer: bool, campaign: str | None = None) -> int:
+def calculate_points(total: float, is_new_customer: bool -> int:
     """
     C-rule (config driven)
     """
