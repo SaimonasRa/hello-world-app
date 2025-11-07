@@ -1,15 +1,20 @@
 # Loyalty engine
-VERSION = "2.0-A"
-RULE = "1 point per €5; +10 bonus for new customers"
+VERSION = "2.0-C"
+RULE = "Config-driven: 1 per €12; +3 bonus for new customers"
+
+CONFIG = {
+    "per_eur": 12,
+    "new_customer_bonus": 3,
+}
 
 def calc_points(total: float, is_new_customer: bool) -> int:
     """
-    A-rule:
-      - floor(total / 5)
-      - +10 if new customer
+    Base rule:
+      - floor(total / 10)
+      - +5 if new customer
     """
-    base = int(total // 5)
-    bonus = 10 if is_new_customer else 0
+    base = int(total // 10)
+    bonus = 5 if is_new_customer else 0
     return base + bonus
 
 def format_message(total: float, is_new_customer: bool) -> str:
