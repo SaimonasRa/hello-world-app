@@ -6,14 +6,14 @@ CONFIG = {
     "new_customer_bonus": 3,
 }
 
-def calculate_points(total: float, is_new_customer: bool -> int:
+def calculate_points(total: float, is_new_customer: bool) -> int:
     """
-    C-rule (config driven)
+    Base rule:
+      - floor(total / 10)
+      - +5 if new customer
     """
-    per_eur = CONFIG.get("per_eur", 10)
-    bonus_val = CONFIG.get("new_customer_bonus", 5)
-    base = int(total // per_eur)
-    bonus = bonus_val if is_new_customer else 0
+    base = int(total // 10)
+    bonus = 5 if is_new_customer else 0
     return base + bonus
 
 def format_message(total: float, is_new_customer: bool) -> str:
