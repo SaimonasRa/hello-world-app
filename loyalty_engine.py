@@ -1,4 +1,3 @@
-# Loyalty engine
 VERSION = "2.0-C"
 RULE = "Config-driven: 1 per €12; +3 bonus for new customers"
 
@@ -7,7 +6,7 @@ CONFIG = {
     "new_customer_bonus": 3,
 }
 
-def calc_points(total: float, is_new_customer: bool) -> int:
+def calculate_points(total: float, is_new_customer: bool) -> int:
     """
     Base rule:
       - floor(total / 10)
@@ -18,7 +17,7 @@ def calc_points(total: float, is_new_customer: bool) -> int:
     return base + bonus
 
 def format_message(total: float, is_new_customer: bool) -> str:
-    pts = calc_points(total, is_new_customer)  # NOTE: renamed function
+    pts = calculate_points(total, is_new_customer)
     return f"[v{VERSION}] {pts} pts — {RULE}"
 
 if __name__ == "__main__":
